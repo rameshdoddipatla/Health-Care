@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mental Health Support - Health Hub</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;family=Young+Serif&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap bar"><a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="10" fill="#17615C"/><path d="M5 19h7l3-7 5 14 3-7h8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Health Hub</a><nav class="nav" aria-label="Main"><a href="health.html">Health services</a><a href="articles.html">Articles</a><a href="contact.html">Contact</a></nav><div class="actions"><a class="btn btn-ghost" href="login.html">Log in</a><a class="btn" href="signup.html">Sign up</a></div></div></header>
+<main id="main"><div class="page-head wrap"><a class="back" href="health.html">Back to health services</a><br><h1>Mental health support</h1><p class="lead">Quick self-check, tips, and resources. This is not a diagnosis, only guidance.</p></div>
+<div class="wrap">
+<div class="mental-grid">
+<section class="panel" aria-live="polite" aria-labelledby="assess-h">
+<h2 id="assess-h">Self-assessment (short)</h2>
+<p class="muted">Answer how you&rsquo;ve felt in the <strong>last 2 weeks</strong>. Choose the option that fits best.</p>
+<form id="quiz" onsubmit="return false;" aria-label="Mental health self assessment">
+<div class="q" data-index="0"><label>1. Little interest or pleasure in doing things?</label><div class="options" role="radiogroup"><div class="opt" tabindex="0" data-score="0">Not at all</div><div class="opt" tabindex="0" data-score="1">Several days</div><div class="opt" tabindex="0" data-score="2">More than half</div><div class="opt" tabindex="0" data-score="3">Nearly every day</div></div></div><div class="q" data-index="1"><label>2. Feeling down, depressed, or hopeless?</label><div class="options" role="radiogroup"><div class="opt" tabindex="0" data-score="0">Not at all</div><div class="opt" tabindex="0" data-score="1">Several days</div><div class="opt" tabindex="0" data-score="2">More than half</div><div class="opt" tabindex="0" data-score="3">Nearly every day</div></div></div><div class="q" data-index="2"><label>3. Trouble falling or staying asleep, or sleeping too much?</label><div class="options" role="radiogroup"><div class="opt" tabindex="0" data-score="0">Not at all</div><div class="opt" tabindex="0" data-score="1">Several days</div><div class="opt" tabindex="0" data-score="2">More than half</div><div class="opt" tabindex="0" data-score="3">Nearly every day</div></div></div><div class="q" data-index="3"><label>4. Feeling nervous, anxious, or on edge?</label><div class="options" role="radiogroup"><div class="opt" tabindex="0" data-score="0">Not at all</div><div class="opt" tabindex="0" data-score="1">Several days</div><div class="opt" tabindex="0" data-score="2">More than half</div><div class="opt" tabindex="0" data-score="3">Nearly every day</div></div></div><div class="q" data-index="4"><label>5. Difficulty concentrating on tasks (reading, working)?</label><div class="options" role="radiogroup"><div class="opt" tabindex="0" data-score="0">Not at all</div><div class="opt" tabindex="0" data-score="1">Several days</div><div class="opt" tabindex="0" data-score="2">More than half</div><div class="opt" tabindex="0" data-score="3">Nearly every day</div></div></div>
+<div class="actions-row">
+<button class="btn-primary" id="calc">Check results</button>
+<button class="btn btn-ghost" id="reset" type="button">Reset</button>
+</div>
+<div id="out" aria-live="polite"></div>
+</form>
+</section>
+<aside class="panel" aria-label="Resources and tips">
+<div class="side-block">
+<h2>Immediate tips</h2>
+<p class="muted small">Try these simple actions now to reduce stress or anxiety.</p>
+<ul class="plain tips">
+<li>Take 5 slow deep breaths (inhale 4s, hold 4s, exhale 6s).</li>
+<li>Short walk for 10 minutes in natural light.</li>
+<li>Grounding: name 5 things you see, 4 you can touch, 3 you hear.</li>
+<li>Limit caffeine and hydrate with water.</li>
+</ul>
+</div>
+<div class="side-block">
+<h2>When to seek help</h2>
+<p class="muted small">If you have severe symptoms, thoughts of harming yourself, or feel unsafe, reach out immediately.</p>
+<div class="helpline" role="region" aria-label="Emergency contact">
+<p><strong>Emergency</strong></p>
+<p class="small">Call your local emergency number or contact a crisis helpline.</p>
+<p class="small" style="margin-top:8px">India (example): <strong>National Helpline: 080-4611-0007</strong></p>
+</div>
+</div>
+<div class="side-block">
+<h2>Speak to a professional</h2>
+<p class="muted small">If you want to consult a doctor or counsellor, book an appointment.</p>
+<a class="book" href="doctor.html">Book a mental health appointment</a>
+</div>
+<div class="side-block">
+<h2>Trusted resources</h2>
+<ul class="plain tips">
+<li><a href="https://www.mentalhealth.org.uk" target="_blank" rel="noopener">mentalhealth.org.uk</a></li>
+<li><a href="https://www.nimh.nih.gov" target="_blank" rel="noopener">NIMH (NIH)</a></li>
+<li><a href="https://www.who.int/health-topics/mental-health" target="_blank" rel="noopener">WHO: Mental health</a></li>
+</ul>
+</div>
+</aside>
+</div>
+<p class="disclaimer">This tool is for self-help and education only, not a medical diagnosis. If you are in danger or feel like harming yourself, contact emergency services immediately.</p>
+</div>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<div class="footer-grid">
+<div>
+<a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="10" fill="#17615C"/><path d="M5 19h7l3-7 5 14 3-7h8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Health Hub</a>
+<p>Fitness, nutrition, appointments and trusted medical resources in one place.</p>
+</div>
+<div>
+<h3 style="color:#fff">Explore</h3>
+<ul class="footer-links">
+<li><a href="health.html">Health services</a></li>
+<li><a href="articles.html">Articles</a></li>
+<li><a href="calculator.html">BMI calculator</a></li>
+<li><a href="emergency-help.html">Emergency help</a></li>
+</ul>
+</div>
+<div>
+<h3 style="color:#fff">Company</h3>
+<ul class="footer-links">
+<li><a href="contact.html">Contact us</a></li>
+<li><a href="privacy.html">Privacy policy</a></li>
+<li><a href="login.html">Log in</a></li>
+<li><a href="signup.html">Sign up</a></li>
+</ul>
+</div>
+</div>
+<p class="footer-base">&copy; 2026 Health &amp; Wellness Hub. All rights reserved.</p>
+</div>
+</footer>
+<script>
+// Simple UI handling for selectable options (keyboard + click)
+document.querySelectorAll('.options').forEach(group => {
+  group.addEventListener('click', e => {
+    const opt = e.target.closest('.opt');
+    if (!opt) return;
+    // unselect siblings
+    Array.from(group.children).forEach(c => c.classList.remove('selected'));
+    opt.classList.add('selected');
+  });
+  // keyboard: allow Enter/Space to toggle
+  group.addEventListener('keydown', e => {
+    const el = e.target.closest('.opt');
+    if (!el) return;
+    if (e.key === ' ' || e.key === 'Enter') {
+      e.preventDefault();
+      el.click();
+    }
+  });
+});
+
+function calculateScore() {
+  const qs = Array.from(document.querySelectorAll('.q'));
+  let total = 0;
+  let answered = 0;
+  qs.forEach(q => {
+    const sel = q.querySelector('.opt.selected');
+    if (sel) {
+      total += Number(sel.dataset.score || 0);
+      answered++;
+    }
+  });
+  return {total, answered, max: qs.length * 3};
+}
+
+function showResult() {
+  const res = calculateScore();
+  const out = document.getElementById('out');
+  out.innerHTML = '';
+  if (res.answered < 1) {
+    out.innerHTML = '<div class="result warn">Please answer the questions before checking the result.</div>';
+    return;
+  }
+  let text = '', cls = 'good';
+  if (res.total <= 4) {
+    cls = 'good';
+    text = 'Your responses suggest mild or no significant symptoms right now.';
+  } else if (res.total <= 9) {
+    cls = 'warn';
+    text = 'You may be experiencing moderate symptoms. Consider speaking with a counselor or primary care doctor.';
+  } else {
+    cls = 'danger';
+    text = 'Your responses suggest more severe symptoms. It is recommended to consult a mental health professional soon.';
+  }
+  const resultBox = document.createElement('div');
+  resultBox.className = 'result ' + cls;
+  resultBox.innerHTML = `<strong>Score: ${res.total} / ${res.max}</strong>
+    <div style="margin-top:8px">${text}</div>
+    <ul class="plain tips">
+      <li>If you feel overwhelmed, call a local helpline or emergency services right away.</li>
+      <li>Try 1\u20132 coping tips above for immediate relief.</li>
+      <li>Consider booking an appointment with a mental health professional.</li>
+    </ul>
+    <div style="margin-top:10px">
+      <a class="book" href="doctor.html">Book an appointment</a>
+    </div>`;
+  out.appendChild(resultBox);
+}
+
+document.getElementById('calc').addEventListener('click', (e) => {
+  e.preventDefault();
+  showResult();
+});
+
+document.getElementById('reset').addEventListener('click', () => {
+  document.querySelectorAll('.opt.selected').forEach(o => o.classList.remove('selected'));
+  document.querySelectorAll('.opt').forEach(o => o.setAttribute('aria-checked', 'false'));
+  document.getElementById('out').innerHTML = '';
+});
+
+// Accessibility: make .opt focusable and behave like radio
+document.querySelectorAll('.opt').forEach(opt => {
+  opt.setAttribute('role', 'radio');
+  opt.setAttribute('aria-checked', 'false');
+  opt.addEventListener('click', () => {
+    const siblings = opt.parentElement.children;
+    Array.from(siblings).forEach(s => { s.setAttribute('aria-checked', 'false'); });
+    opt.setAttribute('aria-checked', 'true');
+  });
+});
+</script>
+<script src="assets/site.js"></script>
+</body>
+</html>

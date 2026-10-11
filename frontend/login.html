@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Log in - Health Hub</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;family=Young+Serif&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="auth"><div class="auth-visual"><a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="10" fill="#17615C"/><path d="M5 19h7l3-7 5 14 3-7h8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Health Hub</a><div><h2>Your health, in one place.</h2><p>Book doctors, track fitness and sleep, and keep trusted medical resources close.</p></div></div>
+<main id="main" class="auth-main">
+<div class="auth-card">
+<a class="brand brand-mobile" href="index.html"><svg class="brand-mark" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="10" fill="#17615C"/><path d="M5 19h7l3-7 5 14 3-7h8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Health Hub</a>
+<h1>Log in</h1>
+<p class="lead">Welcome back. Enter your details to continue.</p>
+<p id="formMsg" class="notice error" role="alert" hidden></p>
+<form onsubmit="saveName(event)" novalidate>
+<div class="field"><label for="email">Email address</label><input type="email" id="email" name="email" autocomplete="email" required></div>
+<div class="field"><label for="password">Password</label><input type="password" id="password" name="password" autocomplete="current-password" required></div>
+<button type="submit" class="btn btn-block btn-lg">Log in</button>
+</form>
+<p class="auth-alt">Don&rsquo;t have an account? <a href="signup.html">Sign up</a></p>
+</div>
+</main>
+</div>
+<script>
+function showMsg(text, kind) {
+  var el = document.getElementById("formMsg");
+  el.className = "notice " + kind;
+  el.textContent = text;
+  el.hidden = false;
+}
+
+async function saveName(event) {
+  event.preventDefault();
+  var body = {
+    email: document.getElementById("email").value,
+    password: document.getElementById("password").value
+  };
+  if (!body.email || !body.password) {
+    showMsg("Please enter your email and password.", "error");
+    return;
+  }
+  try {
+    var res = await fetch("/login", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body)
+    });
+    var data = await res.json();
+    if (res.ok) {
+      localStorage.setItem("fullname", data.name);
+      window.location.href = data.redirect;
+    } else if (res.status === 404 && data.redirect) {
+      // No account for this email: show the message, then send them to sign up
+      showMsg(data.message, "info");
+      setTimeout(function () { window.location.href = data.redirect; }, 1800);
+    } else {
+      showMsg(data.message || "Login failed.", "error");
+    }
+  } catch (err) {
+    showMsg("Could not reach the server. Is it running?", "error");
+  }
+}
+</script>
+<script src="assets/site.js"></script>
+</body>
+</html>

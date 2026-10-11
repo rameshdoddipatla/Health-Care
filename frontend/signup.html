@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sign up - Health Hub</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;family=Young+Serif&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="auth"><div class="auth-visual"><a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="10" fill="#17615C"/><path d="M5 19h7l3-7 5 14 3-7h8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Health Hub</a><div><h2>Your health, in one place.</h2><p>Book doctors, track fitness and sleep, and keep trusted medical resources close.</p></div></div>
+<main id="main" class="auth-main">
+<div class="auth-card">
+<a class="brand brand-mobile" href="index.html"><svg class="brand-mark" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="10" fill="#17615C"/><path d="M5 19h7l3-7 5 14 3-7h8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Health Hub</a>
+<h1>Create your account</h1>
+<p class="lead">It takes a minute. Then you can book appointments and track your health.</p>
+<p id="formMsg" class="notice error" role="alert" hidden></p>
+<form id="signupForm" novalidate>
+<div class="field"><label for="name">Full name</label><input type="text" id="name" name="name" autocomplete="name" required></div>
+<div class="field"><label for="email">Email address</label><input type="email" id="email" name="email" autocomplete="email" required></div>
+<div class="field"><label for="phone">Phone number</label><input type="tel" id="phone" name="phone" autocomplete="tel" required></div>
+<div class="field-row">
+<div class="field"><label for="password">Password</label><input type="password" id="password" name="password" autocomplete="new-password" required></div>
+<div class="field"><label for="confirm">Confirm password</label><input type="password" id="confirm" name="confirm" autocomplete="new-password" required></div>
+</div>
+<button type="submit" class="btn btn-block btn-lg">Sign up</button>
+</form>
+<p class="auth-alt">Already have an account? <a href="login.html">Log in</a></p>
+</div>
+</main>
+</div>
+<script>
+function showMsg(text, kind) {
+  var el = document.getElementById("formMsg");
+  el.className = "notice " + kind;
+  el.textContent = text;
+  el.hidden = false;
+}
+
+const form = document.getElementById("signupForm");
+form.addEventListener("submit", async function (e) {
+  e.preventDefault();
+  const password = document.getElementById("password").value;
+  const confirm = document.getElementById("confirm").value;
+
+  const body = {
+    name: document.getElementById("name").value,
+    email: document.getElementById("email").value,
+    phone: document.getElementById("phone").value,
+    password: password
+  };
+
+  if (!body.name || !body.email || !body.phone || !password) {
+    showMsg("Please fill in all fields.", "error");
+    return;
+  }
+  if (password !== confirm) {
+    showMsg("Passwords do not match.", "error");
+    return;
+  }
+
+  try {
+    const res = await fetch("/signup", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body)
+    });
+    const data = await res.json();
+    if (res.ok) {
+      localStorage.setItem("fullname", data.name || body.name);
+      window.location.href = data.redirect;
+    } else if (res.status === 409 && data.redirect) {
+      // Account already exists: show the message, then send them to log in
+      showMsg(data.message, "info");
+      setTimeout(function () { window.location.href = data.redirect; }, 1800);
+    } else {
+      showMsg(data.message || "Signup failed.", "error");
+    }
+  } catch (err) {
+    showMsg("Could not reach the server. Is it running?", "error");
+  }
+});
+</script>
+<script src="assets/site.js"></script>
+</body>
+</html>

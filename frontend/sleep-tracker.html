@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sleep Tracker - Health Hub</title>
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Public+Sans:wght@400;500;600;700&amp;family=Young+Serif&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap bar"><a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="10" fill="#17615C"/><path d="M5 19h7l3-7 5 14 3-7h8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Health Hub</a><nav class="nav" aria-label="Main"><a href="health.html">Health services</a><a href="articles.html">Articles</a><a href="contact.html">Contact</a></nav><div class="actions"><a class="btn btn-ghost" href="login.html">Log in</a><a class="btn" href="signup.html">Sign up</a></div></div></header>
+<main id="main"><div class="page-head wrap"><a class="back" href="health.html">Back to health services</a><br><h1>Sleep tracker</h1><p class="lead">Track and improve your sleep cycle.</p></div>
+<div class="wrap tool">
+<div class="panel">
+<h2>Log your sleep</h2>
+<form onsubmit="event.preventDefault(); calculateSleep();" novalidate>
+<div class="field-row">
+<div class="field"><label for="sleepTime">Sleep time</label><input type="time" id="sleepTime" required></div>
+<div class="field"><label for="wakeTime">Wake time</label><input type="time" id="wakeTime" required></div>
+</div>
+<button type="submit" class="btn btn-block">Track sleep</button>
+</form>
+</div>
+<div class="panel panel-mint result-panel" aria-live="polite">
+<div id="result"><p class="empty">Enter when you went to bed and when you woke up.</p></div>
+</div>
+</div>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<div class="footer-grid">
+<div>
+<a class="brand" href="index.html"><svg class="brand-mark" viewBox="0 0 36 36" aria-hidden="true"><rect width="36" height="36" rx="10" fill="#17615C"/><path d="M5 19h7l3-7 5 14 3-7h8" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>Health Hub</a>
+<p>Fitness, nutrition, appointments and trusted medical resources in one place.</p>
+</div>
+<div>
+<h3 style="color:#fff">Explore</h3>
+<ul class="footer-links">
+<li><a href="health.html">Health services</a></li>
+<li><a href="articles.html">Articles</a></li>
+<li><a href="calculator.html">BMI calculator</a></li>
+<li><a href="emergency-help.html">Emergency help</a></li>
+</ul>
+</div>
+<div>
+<h3 style="color:#fff">Company</h3>
+<ul class="footer-links">
+<li><a href="contact.html">Contact us</a></li>
+<li><a href="privacy.html">Privacy policy</a></li>
+<li><a href="login.html">Log in</a></li>
+<li><a href="signup.html">Sign up</a></li>
+</ul>
+</div>
+</div>
+<p class="footer-base">&copy; 2026 Health &amp; Wellness Hub. All rights reserved.</p>
+</div>
+</footer>
+<script>
+function calculateSleep() {
+  var sleep = document.getElementById("sleepTime").value;
+  var wake = document.getElementById("wakeTime").value;
+  var out = document.getElementById("result");
+  if (sleep && wake) {
+    var sleepDate = new Date("1970-01-01T" + sleep + ":00");
+    var wakeDate = new Date("1970-01-01T" + wake + ":00");
+    if (wakeDate <= sleepDate) {
+      wakeDate.setDate(wakeDate.getDate() + 1);
+    }
+    var diff = (wakeDate - sleepDate) / (1000 * 60 * 60);
+    var totalMin = Math.round(diff * 60);
+    var h = Math.floor(totalMin / 60), m = totalMin % 60;
+    var note = diff < 7
+      ? "That is less than the 7\u20138 hours most adults need."
+      : "That meets the 7\u20138 hours most adults need.";
+    out.innerHTML =
+      '<p class="readout-value">' + h + '<small>h</small> ' + m + '<small>min</small></p>' +
+      '<p class="readout-status">You slept for ' + diff.toFixed(1) + ' hours</p>' +
+      '<p class="readout-note">' + note + '</p>';
+  } else {
+    out.innerHTML = '<p class="readout-error">Please enter both times.</p>';
+  }
+}
+</script>
+<script src="assets/site.js"></script>
+</body>
+</html>
